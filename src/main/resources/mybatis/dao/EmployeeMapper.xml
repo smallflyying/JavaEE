@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mybatis.dao.EmployeeMapper">
+    <!--
+    查询单个员工信息
+    Employee getEmployeeId();
+    -->
+    <select id="getEmployeeId" parameterType="Integer" resultType="mybatis.beans.Employee">
+        select * from employ where id1= ${id1}
+    </select>
+    <!--
+    查询所有员工信息
+    List<Employee> getAllEmployee();
+    -->
+    <select id="getAllEmployee" resultType="mybatis.beans.Employee">
+        select * from employ
+    </select>
+    <!--插入数据-->
+    <insert id="addEmployee" parameterType="mybatis.beans.Employee" useGeneratedKeys="true" keyProperty="name2">
+        insert into employ(id1,name2,email2,gender2) values(#{id1},#{name2},#{email2},#{gender2})
+    </insert>
+    <!--修改数据-->
+    <update id="updateEmployee" parameterType="mybatis.beans.Employee">
+        update employ set name2=#{name2} where id1=#{id1}
+    </update>
+    <!--删除数据-->
+    <delete id="deleteEmployee" parameterType="mybatis.beans.Employee">
+        delete from employ where id1=#{id1}
+    </delete>
+
+    <!--public Employee selectEmployee(Employee,employee);-->
+    <select id="selectEmployee" resultType="mybatis.beans.Employee">
+        select * from employ where name2=#{name2}
+    </select>
+
+    <!--public Employee selectField(String name2,Integer gender);-->
+    <select id="selectField" resultType="mybatis.beans.Employee">
+        select * from employ where name2=#{name}
+    </select>
+
+    <select id="selectParam" resultType="mybatis.beans.Employee">
+        select * from employ where name2=#{name}
+    </select>
+
+    <!--public Map<String ,Object> getEmployeeByReturnMap(Integer id1);-->
+<!--    <select id="getEmployeeByReturnMap" resultType="java.util.Map">-->
+<!--        select * from employ where id1= #{id1}-->
+<!--    </select>-->
+
+    <select id="getEmployeeByReturnMap" resultType="java.util.Map">
+        select * from employ where id1= '${id1}'
+    </select>
+
+    <!--public Map<Integer,Employee> getAllEmployeesReturnMap();-->
+    <select id="getAllEmployeesReturnMap" resultType="java.util.Map">
+        select * from employ
+    </select>
+
+    <!--public Employee1 selectMapping(Integer id);-->
+    <select id="selectMapping" resultMap="xiaofei">
+        select * from employe1 e1 ,dept d where e1.did=d.did and e1.id = #{id}
+    </select>
+    <resultMap id="xiaofei" type="mybatis.beans.Employee1">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="email" property="email"></result>
+        <result column="gender" property="gender"></result>
+        <association property="de" javaType="mybatis.beans.Dept">
+            <id column="did" property="did"></id>
+            <result property="dept_name" column="deptname"></result>
+        </association>
+    </resultMap>
+    <!--List<Employee1> selectAllMappingInfo();-->
+    <select id="selectAllMappingInfo" resultMap="pro1">
+select  * from employe1,dept where employe1.did=dept.did
+    </select>
+    <resultMap id="pro1" type="mybatis.beans.Employee1">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="email" property="email"></result>
+        <result column="gender" property="gender"></result>
+        <association property="de" javaType="mybatis.beans.Dept">
+            <id column="did" property="did"></id>
+            <result property="dept_name" column="deptname"></result>
+        </association>
+    </resultMap>
+    <!--selectAllMappingInfo2-->
+    <select id="selectAllMappingInfo2" resultMap="pro2">
+       select  * from employe1,dept where employe1.did=dept.did
+    </select>
+    <resultMap id="pro2" type="mybatis.beans.Employee1">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="email" property="email"></result>
+        <result column="gender" property="gender"></result>
+        <association property="de" javaType="mybatis.beans.Dept">
+            <id column="did" property="did"></id>
+            <result property="dept_name" column="deptname"></result>
+        </association>
+    </resultMap>
+    <!--public Map<String ,Object> selectMapping2(Integer id);-->
+    <select id="selectMapping2" resultType="java.util.Map">
+        select * from employe1 e1 ,dept d where e1.did=d.did and e1.id = #{id}
+    </select>
+    
+    <!--public int getrelation(Integer id);-->
+    <select id="getrelation" resultMap="ii">
+        select * from employe1 where id=#{id}
+    </select>
+    <resultMap id="ii" type="mybatis.beans.Employee1">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="email" property="email"></result>
+        <result column="gender" property="gender"></result>
+        <association property="de"  select="mybatis.dao.DeptMapper.getone" javaType="mybatis.beans.Dept"  column="did" ></association>
+    </resultMap>
+</mapper>

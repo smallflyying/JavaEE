@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="App1" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/App1.xml</file>
+        </fileset>
+        <fileset id="fileset2" name="Aliyun" removed="false" />
+        <fileset id="fileset3" name="Applicationxm1" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/applicationxm1.xml</file>
+        </fileset>
+        <fileset id="fileset4" name="Application Annotion" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/application-annotion.xml</file>
+        </fileset>
+        <fileset id="fileset5" name="Jdbct" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/jdbct.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
+  </component>
+</module>

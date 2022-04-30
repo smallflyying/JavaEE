@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.dao.DeptMapper">
+
+     <!--public int getOne(Integer did);-->
+    <select id="getone" resultType="mybatis.beans.Dept">
+        select did,deptname from dept where did=#{did}
+    </select>
+
+    <!--DeptMapper getone2(Integer did);-->
+    <select id="getone2" resultMap="xx">
+        select d.did,d.deptname,e.id,e.name,e.email
+        from dept d left join employe1  e on d.did=e.did where d.did=#{did}
+    </select>
+    <resultMap id="xx" type="mybatis.beans.Dept">
+        <id column="did" property="did"></id>
+        <result column="deptname" property="dept_name"></result>
+        <collection property="emps" ofType="mybatis.beans.Employee1">
+            <id column="id" property="id"></id>
+            <result column="name" property="name"></result>
+            <result column="email" property="email"></result>
+        </collection>
+    </resultMap>
+
+
+</mapper>
